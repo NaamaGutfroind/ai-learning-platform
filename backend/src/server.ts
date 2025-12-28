@@ -9,13 +9,13 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// חיבור הראוטים
+
 app.use('/api/users', userRoutes);
 
-// Middleware לטיפול בשגיאות (חייב להיות בסוף)
+
 app.use(errorHandler);
 
-// חיבור ל-MongoDB
+
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ai_platform';
 
