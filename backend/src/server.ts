@@ -1,20 +1,27 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
-import connectDB from './config/db'; 
+import mongoose from 'mongoose';
+import userRoutes from './routes/userRoutes';
+import { errorHandler } from './middleware/errorMiddleware';
 
 dotenv.config();
-connectDB();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('AI Learning Platform API is running...');
-});
+// חיבור הראוטים
+app.use('/api/users', userRoutes);
 
+// Middleware לטיפול בשגיאות (חייב להיות בסוף)
+app.use(errorHandler);
+
+// חיבור ל-MongoDB
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(` Server running on port ${PORT}`);
-});
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ai_platform';
+
+mongoose.connect(MONGO_URI)
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch(err => console.error('MongoDB connection error:', err));
