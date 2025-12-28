@@ -4,13 +4,13 @@ import { registerUser, getUserById } from '../controllers/userController';
 const router = express.Router();
 
 /**
- * @route   POST /api/users/register
- * @desc    רישום משתמש חדש במערכת
+ * @route   
+ * @desc    
  */
 router.post('/register', registerUser);
 
 /**
- * @route   GET /api/users/:id
+ * @route   
  * @desc    קבלת פרטי משתמש לפי תעודת זהות
  */
 router.get('/:id', getUserById);
