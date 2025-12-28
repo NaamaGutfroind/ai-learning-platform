@@ -1,18 +1,25 @@
-import express from 'express';
-import { registerUser, getUserById } from '../controllers/userController';
+import express from 'express'; 
+import { registerUser, getUserById, getAllUsers } from '../controllers/userController';
+import { protect, authorize } from '../middleware/auth';
 
-const router = express.Router();
+const router = express.Router(); 
 
 /**
- * @route   POST /api/users/register
- * @desc    רישום משתמש חדש במערכת
+ * @route   
+ * @desc    
  */
 router.post('/register', registerUser);
 
 /**
- * @route   GET /api/users/:id
- * @desc    קבלת פרטי משתמש לפי תעודת זהות
+ * @route   
+ * @desc    
  */
-router.get('/:id', getUserById);
+router.get('/', protect, authorize('admin'), getAllUsers);
+
+/**
+ * @route  
+ * @desc    
+ */
+router.get('/:id', protect, getUserById);
 
 export default router;

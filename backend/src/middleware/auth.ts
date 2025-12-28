@@ -21,3 +21,13 @@ export const protect = async (req: Request, res: Response, next: NextFunction) =
     next(error);
   }
 };
+
+
+export const authorize = (...roles: string[]) => {
+  return (req: any, res: Response, next: NextFunction) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return next(new ErrorResponse(`תפקיד ${req.user?.role || 'unknown'} אינו מורשה לגשת לנתיב זה`, 403));
+    }
+    next();
+  };
+};
