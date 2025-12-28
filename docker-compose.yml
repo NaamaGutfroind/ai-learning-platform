@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # הגדרת שירות מסד הנתונים
+  mongodb:
+    image: mongo:latest
+    container_name: ai_learning_platform_db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+# הגדרת נפח אחסון כדי שהנתונים לא יימחקו כשהקונטיינר נעצר
+volumes:
+  mongo_data:
