@@ -14,13 +14,9 @@ export const getAIContent = async (req: Request, res: Response) => {
     } catch (apiError) {
       console.warn("AI API failed, switching to Offline Mock Mode");
 
-      aiResponse = {
-        topic: `${category_id} - ${sub_category_id}`,
-        content: `שלום! כרגע המערכת במצב אופליין. הנה מידע בסיסי על ${sub_category_id} בתחום ה-${category_id}.`,
-        exercises: [
-          `תרגיל 1 בנושא ${sub_category_id}`,
-          `תרגיל 2 בנושא ${category_id}`
-        ],
+  aiResponse = {
+        explanation: `שלום! כרגע המערכת במצב אופליין (ללא חיבור ל-AI). \nהנה מידע בסיסי על ${sub_category_id} בתחום ה-${category_id}.`,
+        task: `המשימה שלך: קרא עוד על הנושא ${sub_category_id} ונסה לסכם אותו ב-3 משפטים.`,
         isMock: true
       };
     }
