@@ -64,21 +64,19 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
  */
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id, phone } = req.body;
+    const { id, phone, name } = req.body;
 
-    //  בדיקה שהוזנו כל הפרטים
-    if (!id || !phone) {
-      return next(new ErrorResponse('נא לספק תעודת זהות ומספר טלפון', 400));
+    if (!id || !phone || !name) {
+      return next(new ErrorResponse('נא לספק שם, תעודת זהות ומספר טלפון', 400));
     }
 
-    //  חיפוש המשתמש ב-DB
-    const user = await User.findOne({ _id: id, phone });
+    // התיקון כאן: אנחנו מחפשים לפי _id כי ככה זה נשמר ב-Register
+    const user = await User.findOne({ _id: id, phone, name });
 
     if (!user) {
       return next(new ErrorResponse('פרטי התחברות שגויים', 401));
     }
 
-    // יצירת טוקן 
     const secret = process.env.JWT_SECRET || 'fallbackSecretKey';
     const expire = process.env.JWT_EXPIRE || '30d';
 
@@ -88,7 +86,6 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
       { expiresIn: expire as any }
     );
 
-   
     res.status(200).json({
       success: true,
       token,
