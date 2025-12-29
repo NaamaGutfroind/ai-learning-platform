@@ -70,7 +70,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
       return next(new ErrorResponse('נא לספק שם, תעודת זהות ומספר טלפון', 400));
     }
 
-    // התיקון כאן: אנחנו מחפשים לפי _id כי ככה זה נשמר ב-Register
+    
     const user = await User.findOne({ _id: id, phone, name });
 
     if (!user) {
