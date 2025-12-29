@@ -1,8 +1,8 @@
 import SubCategory from '../models/SubCategory';
 
-export const createNewSubCategory = async (id: string, category_id: string, name: string) => {
+// לא מקבלים יותר id כי Mongoose יוצר אוטומטית
+export const createNewSubCategory = async (category_id: string, name: string) => {
   const newSubCategory = new SubCategory({
-    _id: id,
     category_id,
     name
   });

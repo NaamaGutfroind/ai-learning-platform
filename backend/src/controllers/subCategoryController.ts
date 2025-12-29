@@ -3,16 +3,16 @@ import * as subCategoryService from '../services/subCategoryService';
 
 export const createSubCategory = async (req: Request, res: Response) => {
   try {
-    const { _id, category_id, name } = req.body;
-    
-    if (!_id || !category_id || !name) {
-      return res.status(400).json({ message: "All fields (_id, category_id, name) are required" });
+    const { category_id, name } = req.body;
+
+    if (!category_id || !name) {
+      return res.status(400).json({ message: "Both category_id and name are required" });
     }
 
-    const subCategory = await subCategoryService.createNewSubCategory(_id, category_id, name);
+    const subCategory = await subCategoryService.createNewSubCategory(category_id, name);
     res.status(201).json(subCategory);
   } catch (error) {
-    res.status(500).json({ message: "Error creating sub-category. Check if ID exists." });
+    res.status(500).json({ message: "Error creating sub-category" });
   }
 };
 
