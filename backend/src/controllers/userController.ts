@@ -55,6 +55,50 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
+
+
+
+/**
+ * @route   POST /api/users/login
+ * @desc    התחברות משתמש קיים לפי ID וטלפון
+ */
+export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id, phone } = req.body;
+
+    //  בדיקה שהוזנו כל הפרטים
+    if (!id || !phone) {
+      return next(new ErrorResponse('נא לספק תעודת זהות ומספר טלפון', 400));
+    }
+
+    //  חיפוש המשתמש ב-DB
+    const user = await User.findOne({ _id: id, phone });
+
+    if (!user) {
+      return next(new ErrorResponse('פרטי התחברות שגויים', 401));
+    }
+
+    // יצירת טוקן 
+    const secret = process.env.JWT_SECRET || 'fallbackSecretKey';
+    const expire = process.env.JWT_EXPIRE || '30d';
+
+    const token = jwt.sign(
+      { id: user._id },
+      secret as jwt.Secret,
+      { expiresIn: expire as any }
+    );
+
+   
+    res.status(200).json({
+      success: true,
+      token,
+      data: user
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 /**
  * @route   GET /api/users
  * @desc    שליפת כל המשתמשים (רק למנהלים)
