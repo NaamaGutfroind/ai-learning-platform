@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
-import StatusMessage from '../components/StatusMessage';
+import api from '../../services/api';
+import StatusMessage from '../../components/StatusMessage/StatusMessage';
 import './AuthPage.css';
 
 const AuthPage: React.FC = () => {

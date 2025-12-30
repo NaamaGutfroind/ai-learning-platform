@@ -1,5 +1,5 @@
 import React from 'react';
-import AIResponseDisplay from './AIResponseDisplay';
+import AIResponseDisplay from '../AIResponseDisplay/AIResponseDisplay';
 import './LearningForm.css'; 
 
 interface Category { _id: string; name: string; }

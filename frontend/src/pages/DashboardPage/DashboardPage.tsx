@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
-import LearningForm from '../components/LearningForm';
-import AdminPanel from '../components/AdminPanel';
+import api from '../../services/api';
+import LearningForm from '../../components/LearningForm/LearningForm';
+import AdminPanel from '../../components/AdminPanel/AdminPanel';
 import './DashboardPage.css';
 
 interface Category { _id: string; name: string; }

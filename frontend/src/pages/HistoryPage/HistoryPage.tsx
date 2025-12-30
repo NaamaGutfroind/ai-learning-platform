@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
-import AIResponseDisplay from '../components/AIResponseDisplay'; 
+import api from '../../services/api';
+import AIResponseDisplay from '../../components/AIResponseDisplay/AIResponseDisplay'; 
 import './HistoryPage.css'; 
 
 
