@@ -5,7 +5,6 @@ import LearningForm from '../components/LearningForm';
 import AdminPanel from '../components/AdminPanel';
 import './DashboardPage.css';
 
-
 interface Category { _id: string; name: string; }
 interface SubCategory { _id: string; name: string; }
 interface User { _id: string; name: string; phone: string; role?: string; }
@@ -13,7 +12,7 @@ interface User { _id: string; name: string; phone: string; role?: string; }
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   
-  // נתוני משתמש
+ 
   const [user, setUser] = useState<User | null>(null);
   
  
@@ -25,7 +24,7 @@ const DashboardPage: React.FC = () => {
   const [aiResponse, setAiResponse] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  
+ 
   const [activeTab, setActiveTab] = useState<'personal' | 'admin'>('personal');
   const [adminUsers, setAdminUsers] = useState<User[]>([]);
   const [adminHistory, setAdminHistory] = useState<any[]>([]);
@@ -67,6 +66,7 @@ const DashboardPage: React.FC = () => {
     }
   }, [activeTab, user]);
 
+ 
   const handleGenerate = async () => {
     if (!selectedCategoryId || !selectedSubCategoryName || !promptText) {
       alert('נא למלא את כל השדות');
@@ -81,7 +81,13 @@ const DashboardPage: React.FC = () => {
         sub_category_id: selectedSubCategoryName,
         prompt_text: promptText
       });
+
+   
       setAiResponse(JSON.parse(res.data.data.response));
+
+      //  איפוס שדה הטקסט לאחר הצלחה 
+      setPromptText(''); 
+      
     } catch (error) {
       alert("שגיאה ביצירת התוכן");
     } finally {
@@ -100,8 +106,18 @@ const DashboardPage: React.FC = () => {
         <div className="header-actions">
           {user?.role === 'admin' && (
             <div className="tabs-container">
-              <button className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`} onClick={() => setActiveTab('personal')}> למידה</button>
-              <button className={`tab-btn ${activeTab === 'admin' ? 'active' : ''}`} onClick={() => setActiveTab('admin')}> ניהול</button>
+              <button 
+                className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`} 
+                onClick={() => setActiveTab('personal')}
+              > 
+                למידה
+              </button>
+              <button 
+                className={`tab-btn ${activeTab === 'admin' ? 'active' : ''}`} 
+                onClick={() => setActiveTab('admin')}
+              > 
+                ניהול
+              </button>
             </div>
           )}
           <button onClick={() => navigate('/history')} className="btn-history">היסטוריה אישית</button>
@@ -109,7 +125,7 @@ const DashboardPage: React.FC = () => {
         </div>
       </header>
 
-      
+     
       {activeTab === 'personal' ? (
         <LearningForm 
           categories={categories}
