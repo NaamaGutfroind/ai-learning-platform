@@ -1,73 +1,109 @@
+
+.auth-page-wrapper {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .auth-container {
-  max-width: 400px;
-  margin: 50px auto;
+  max-width: 420px;
+  width: 90%;
+  padding: 50px 40px;
   text-align: center;
   direction: rtl;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: #ffffff;
+  border-radius: 20px;
+ 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .auth-title {
-  margin-bottom: 20px;
+  font-size: 32px;
+  color: #2c3e50; 
+  margin-bottom: 35px;
+  font-weight: 800;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 22px;
 }
 
 .auth-input {
-  padding: 10px;
+  padding: 15px 18px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #edf2f7;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #2d3748;
+  text-align: right;
+}
+
+.auth-input:focus {
+  border-color: #3498db;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
 }
 
 .auth-btn {
-  padding: 10px;
-  background-color: #007bff;
+  padding: 16px;
+ 
+  background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
 }
 
 .auth-btn:hover {
-  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+  filter: brightness(1.1);
 }
 
 .toggle-area {
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 15px;
+  color: #7f8c8d;
 }
 
 .toggle-btn {
   background: none;
   border: none;
-  color: blue;
+  color: #3498db;
   cursor: pointer;
-  text-decoration: underline;
+  font-weight: 700;
+  font-size: 15px;
   margin-right: 5px;
-  font-size: 14px;
 }
 
-
 .status-box {
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 14px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .status-error {
-  background-color: #ffe6e6;
-  color: #d8000c;
-  border: 1px solid #d8000c;
+  background-color: #fff5f5;
+  color: #c0392b;
+  border-right: 5px solid #c0392b;
 }
 
 .status-success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background-color: #f0fff4;
+  color: #27ae60;
+  border-right: 5px solid #27ae60;
 }

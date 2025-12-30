@@ -1,0 +1,68 @@
+.form-container {
+  background: white;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  direction: rtl;
+}
+
+.selectors-row {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.selector-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-weight: 600;
+  color: #444;
+  text-align: right;
+}
+
+.styled-select, .styled-textarea {
+  padding: 12px 15px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  text-align: right;
+}
+
+.styled-select:focus, .styled-textarea:focus {
+  border-color: #007bff;
+}
+
+.prompt-area {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.styled-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.btn-generate {
+  width: 100%;
+  padding: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn-generate:hover { background-color: #218838; }
+.btn-generate:active { transform: scale(0.98); }

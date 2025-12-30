@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import StatusMessage from '../components/StatusMessage'; // האימפורט החדש
-import './AuthPage.css'; // האימפורט של העיצוב
+import StatusMessage from '../components/StatusMessage';
+import './AuthPage.css';
 
 const AuthPage: React.FC = () => {
   const navigate = useNavigate();
@@ -48,56 +48,58 @@ const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h1 className="auth-title">{isLogin ? 'התחברות' : 'יצירת חשבון חדש'}</h1>
-      
-     
-      {statusMessage && (
-        <StatusMessage type={statusMessage.type} text={statusMessage.text} />
-      )}
-
-      <form onSubmit={handleSubmit} className="auth-form">
-        <input 
-          className="auth-input"
-          type="text" 
-          placeholder="שם מלא" 
-          value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
-          required 
-        />
-        <input 
-          className="auth-input"
-          type="text" 
-          placeholder="תעודת זהות" 
-          value={formData.id}
-          onChange={(e) => setFormData({...formData, id: e.target.value})}
-          required 
-        />
-        <input 
-          className="auth-input"
-          type="text" 
-          placeholder="מספר טלפון" 
-          value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-          required 
-        />
+   
+    <div className="auth-page-wrapper">
+      <div className="auth-container">
+        <h1 className="auth-title">{isLogin ? 'התחברות' : 'יצירת חשבון'}</h1>
         
-        <button type="submit" className="auth-btn">
-          {isLogin ? 'התחבר' : 'הירשם עכשיו'}
-        </button>
-      </form>
+        {statusMessage && (
+          <StatusMessage type={statusMessage.type} text={statusMessage.text} />
+        )}
 
-      <div className="toggle-area">
-        <span>{isLogin ? 'אין לך חשבון?' : 'כבר רשומה?'}</span>
-        <button 
-          className="toggle-btn"
-          onClick={() => {
-            setIsLogin(!isLogin);
-            setStatusMessage(null);
-          }} 
-        >
-          {isLogin ? 'עברי להרשמה' : 'עברי להתחברות'}
-        </button>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <input 
+            className="auth-input"
+            type="text" 
+            placeholder="שם מלא" 
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            required 
+          />
+          <input 
+            className="auth-input"
+            type="text" 
+            placeholder="תעודת זהות" 
+            value={formData.id}
+            onChange={(e) => setFormData({...formData, id: e.target.value})}
+            required 
+          />
+          <input 
+            className="auth-input"
+            type="text" 
+            placeholder="מספר טלפון" 
+            value={formData.phone}
+            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            required 
+          />
+          
+          <button type="submit" className="auth-btn">
+            {isLogin ? 'כניסה למערכת' : 'להרשמה וקבלת גישה'}
+          </button>
+        </form>
+
+        <div className="toggle-area">
+          <span>{isLogin ? 'עדיין לא רשום?' : 'כבר יש לך חשבון?'}</span>
+          <button 
+            className="toggle-btn"
+            onClick={() => {
+              setIsLogin(!isLogin);
+              setStatusMessage(null);
+            }} 
+          >
+            {isLogin ? 'צרי חשבון חדש' : 'התחבר כאן'}
+          </button>
+        </div>
       </div>
     </div>
   );
