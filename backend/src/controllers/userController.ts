@@ -12,12 +12,26 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
   try {
     const { id, name, phone, role } = req.body;
 
-   
+    //  בדיקה שכל השדות קיימים
     if (!id || !name || !phone) {
       return next(new ErrorResponse('נא לספק תעודת זהות, שם ומספר טלפון', 400));
     }
 
-    //  בדיקה אם המשתמש כבר קיים לפי ID (תעודת זהות)
+  
+
+    // בדיקת תקינות תעודת זהות
+    if (!/^\d{9}$/.test(id)) {
+      return next(new ErrorResponse('תעודת זהות לא תקינה (חייבת להכיל 9 ספרות)', 400));
+    }
+
+    // בדיקת תקינות לטלפון שהמשתמש יכניס
+    if (!/^\d{9,10}$/.test(phone)) {
+      return next(new ErrorResponse('מספר טלפון לא תקין (חייב להכיל 9 או 10 ספרות)', 400));
+    }
+
+   
+
+    // בדיקה אם המשתמש כבר קיים לפי ID 
     const existingUser = await User.findById(id);
     if (existingUser) {
       return next(new ErrorResponse('משתמש עם תעודת זהות זו כבר קיים במערכת', 400));
@@ -29,11 +43,10 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       return next(new ErrorResponse('מספר הטלפון הזה כבר רשום במערכת למשתמש אחר', 400));
     }
 
-   
+    // יצירת המשתמש
     const user = await userService.createUser({ _id: id, name, phone, role: role || 'user' });
 
-   
-   // יצירת הטוקן
+    // יצירת הטוקן
     const secret = process.env.JWT_SECRET || 'fallbackSecretKey';
     const expire = process.env.JWT_EXPIRE || '30d';
 
@@ -43,7 +56,6 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       { expiresIn: expire as any }
     );
 
-   
     res.status(201).json({
       success: true,
       message: 'המשתמש נרשם בהצלחה',
@@ -54,9 +66,6 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     next(error);
   }
 };
-
-
-
 
 /**
  * @route   POST /api/users/login
@@ -69,8 +78,8 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     if (!id || !phone || !name) {
       return next(new ErrorResponse('נא לספק שם, תעודת זהות ומספר טלפון', 400));
     }
-
     
+    // חיפוש המשתמש
     const user = await User.findOne({ _id: id, phone, name });
 
     if (!user) {
