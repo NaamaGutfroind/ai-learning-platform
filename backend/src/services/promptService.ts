@@ -6,9 +6,11 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, 
 });
 
-export const generateLearningContent = async (category: string, subCategory: string) => {
+export const generateLearningContent = async (category: string, subCategory: string, userPrompt?: string) => {
   try {
+   
     const prompt = `Create a learning module for ${category} specifically about ${subCategory}. 
+    ${userPrompt ? `The user also asked: "${userPrompt}". Please address this specifically in your explanation.` : ''}
     Return the response in JSON format with the following fields:
     - explanation: a clear explanation of the topic.
     - task: a practical task for the student to perform.`;

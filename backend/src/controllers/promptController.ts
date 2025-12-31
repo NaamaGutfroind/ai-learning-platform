@@ -9,13 +9,15 @@ export const getAIContent = async (req: Request, res: Response) => {
     let aiResponse;
 
     try {
-      aiResponse = await generateLearningContent(category_id, sub_category_id);
+      // עדכון: הוספנו את prompt_text כפרמטר שלישי לפונקציה
+      aiResponse = await generateLearningContent(category_id, sub_category_id, prompt_text);
       console.log("Fetched from Real AI API");
     } catch (apiError) {
       console.warn("AI API failed, switching to Offline Mock Mode");
 
-  aiResponse = {
-        explanation: `שלום! כרגע המערכת במצב אופליין (ללא חיבור ל-AI). \nהנה מידע בסיסי על ${sub_category_id} בתחום ה-${category_id}.`,
+      // עדכון ה-Mock: הוספנו התייחסות לשאלת המשתמש גם כאן
+      aiResponse = {
+        explanation: `שלום! כרגע המערכת במצב אופליין (ללא חיבור ל-AI). \nהנה מידע בסיסי על ${sub_category_id} בתחום ה-${category_id}. ${prompt_text ? `\nבנוגע לשאלתך: "${prompt_text}", נשמח להרחיב עליה כשתחזור המערכת למצב אונליין.` : ''}`,
         task: `המשימה שלך: קרא עוד על הנושא ${sub_category_id} ונסה לסכם אותו ב-3 משפטים.`,
         isMock: true
       };
