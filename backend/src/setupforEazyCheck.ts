@@ -57,7 +57,7 @@ const setupData = async () => {
       },
       {
         name: 'Science',
-        subs: ['Black hole', 'Biology',]
+        subs: ['Black hole']
       },
       {
         name: 'History',
