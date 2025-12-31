@@ -51,6 +51,7 @@ const AuthPage: React.FC = () => {
    
     <div className="auth-page-wrapper">
       <div className="auth-container">
+        <h1  className="auth-title"> ברוכים הבאים לפלטפורמת הלמידה מבוססת AI</h1>
         <h1 className="auth-title">{isLogin ? 'התחברות' : 'יצירת חשבון'}</h1>
         
         {statusMessage && (
@@ -61,7 +62,7 @@ const AuthPage: React.FC = () => {
           <input 
             className="auth-input"
             type="text" 
-            placeholder="שם מלא" 
+            placeholder="שם" 
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
             required 
@@ -97,7 +98,7 @@ const AuthPage: React.FC = () => {
               setStatusMessage(null);
             }} 
           >
-            {isLogin ? 'צרי חשבון חדש' : 'התחבר כאן'}
+            {isLogin ? 'צור חשבון חדש' : 'התחבר כאן'}
           </button>
         </div>
       </div>
