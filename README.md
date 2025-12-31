@@ -31,7 +31,7 @@ Bash
 npm install
 Configure your .env file (API keys, Mongo URI, etc.).
 
-Populate Database (Crucial Step):  run the Setup Script (npm run setup) To ensure a smooth evaluation experience, the project includes a data seeding script. Running this script accomplishes three things:
+Populate Database (Crucial Step):  run the Setup Script -npm run setup -To ensure a smooth evaluation experience, the project includes a data seeding script. Running this script accomplishes three things:
 
 Schema Ready: It populates the MongoDB with initial Categories and Sub-categories.
 
@@ -42,6 +42,7 @@ Full Visibility: It provides enough sample data so the Admin Dashboard and Globa
 Bash
 
 npm run setup
+
 Demo Credentials (Created by Setup):
 
 Admin User: |name: Admin User|_id: 333333333, | phone: 0500000000,
