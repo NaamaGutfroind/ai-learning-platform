@@ -31,7 +31,13 @@ Bash
 npm install
 Configure your .env file (API keys, Mongo URI, etc.).
 
-Populate Database (Crucial Step): To make the evaluation process easier, run the setup script to populate the database with categories, sub-categories, and demo users:
+Populate Database (Crucial Step):  run the Setup Script (npm run setup) To ensure a smooth evaluation experience, the project includes a data seeding script. Running this script accomplishes three things:
+
+Schema Ready: It populates the MongoDB with initial Categories and Sub-categories.
+
+Instant Testing: It creates Demo Users (both Admin and Student) so you can log in immediately without manual registration.
+
+Full Visibility: It provides enough sample data so the Admin Dashboard and Global History features are populated and easy to review.
 
 Bash
 
@@ -82,7 +88,7 @@ Prompt Engineering: Optimized prompts for generating structured educational cont
 Mock Mode: If the OpenAI API is unavailable or the key is missing, the system automatically switches to a "Mock Mode" to ensure the UI remains fully functional for testing.
 
 Admin Capabilities
-Users with the admin role can access a special dashboard to:
+Users with the admin role (Defined by running npm run setup) can access a special dashboard to:
 
 Monitor all users registered in the system.
 
@@ -90,6 +96,7 @@ View the full history of AI generations across the entire platform.
 
 Filter and search through data.
 
+Add categories and subcategories
  Assumptions
 Users must provide a valid phone number during registration.
 
