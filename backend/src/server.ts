@@ -6,10 +6,10 @@ import cors from 'cors';
 
 import { errorHandler } from './middleware/errorMiddleware'; 
 
-import promptRoutes from './routes/promptRoutes';
-import categoryRoutes from './routes/categoryRoutes';
-import subCategoryRoutes from './routes/subCategoryRoutes';
-import userRoutes from './routes/userRoutes'; 
+import promptRouters from './routers/promptRouters';
+import categoryRouters from './routers/categoryRouters';
+import subCategoryRouters from './routers/subCategoryRouters';
+import userRouters from './routers/userRouters'; 
 
 dotenv.config();
 const app = express();
@@ -20,10 +20,10 @@ const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/ai_learning
 mongoose.connect(mongoURI).then(() => console.log('Connected to MongoDB'));
 
 
-app.use('/api/ai', promptRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/sub-categories', subCategoryRoutes);
-app.use('/api/users', userRoutes); 
+app.use('/api/ai', promptRouters);
+app.use('/api/categories', categoryRouters);
+app.use('/api/sub-categories', subCategoryRouters);
+app.use('/api/users', userRouters); 
 
 
 app.use(errorHandler);
