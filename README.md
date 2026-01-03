@@ -67,6 +67,8 @@ Navigate to the frontend directory:
 
 Bash
 
+# In a NEW terminal window (do not close the backend terminal):
+
 cd frontend
 Install dependencies:
 
