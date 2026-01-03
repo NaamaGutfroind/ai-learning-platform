@@ -48,7 +48,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 
     // יצירת הטוקן
     const secret = process.env.JWT_SECRET || 'fallbackSecretKey';
-    const expire = process.env.JWT_EXPIRE || '30d';
+    const expire = process.env.JWT_EXPIRE || '1d';
 
     const token = jwt.sign(
       { id: user._id },
@@ -87,7 +87,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     }
 
     const secret = process.env.JWT_SECRET || 'fallbackSecretKey';
-    const expire = process.env.JWT_EXPIRE || '30d';
+    const expire = process.env.JWT_EXPIRE || '1d';
 
     const token = jwt.sign(
       { id: user._id },
