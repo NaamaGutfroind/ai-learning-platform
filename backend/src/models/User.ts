@@ -4,7 +4,7 @@ export interface IUser extends Document<string> {
   _id: string; 
   name: string;
   phone: string;
-  role: 'user' | 'admin';//השדה הזה  לא היה כתוב במפורש בדרישת המפורטות של הפרוייקט אבל לדעתי זה נצרך
+  role: 'user' | 'admin';
 }
 
 const UserSchema: Schema = new Schema({
